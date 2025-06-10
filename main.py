@@ -1,5 +1,8 @@
 import threading
 import time
+import csv
+import os
+
 from downloader import Downloader
 from fake_server import get_file_list
 from logger import log
@@ -29,3 +32,12 @@ def run(num_threads=4, benchmark=False):
     if benchmark:
         elapsed = time.perf_counter() - start_time
         log(f"⏱ Benchmark: {num_threads} thread(s) completed in {elapsed:.2f} seconds.")
+
+        csv_path = "benchmark_results.csv"
+        write_header = not os.path.exists(csv_path)
+
+        with open(csv_path, mode="a", newline="") as csv_file:
+            writer = csv.writer(csv_file)
+            if write_header:
+                writer.writerow(["threads", "total_time"])
+            writer.writerow([num_threads, round(elapsed, 2)])
