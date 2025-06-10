@@ -11,5 +11,9 @@ benchmark:
 
 benchmark-threads:
 	python cli.py --threads $(T) --benchmark
+
 plot:
 	python plot_benchmark.py
+
+test:
+	PYTHONPATH=. pytest tests/
