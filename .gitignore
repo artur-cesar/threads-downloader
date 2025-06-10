@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# VSCode config
+.vscode/
+
+# Virtual environments (caso use)
+.env/
+.venv/
+venv/
+ENV/
+
+# macOS
+.DS_Store
+
+# Linux system files
+*~
+
+# Log files
+*.log
+
+# Docker-related
+*.pid
+*.sock
+
+# Pytest
+.cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Benchmarks/data exports
+*.csv
+
+# Editor swap files
+*.swp
+*.swo
