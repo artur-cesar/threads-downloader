@@ -9,16 +9,18 @@ class Downloader:
         self.files = files
         self.lock = threading.Lock()
 
-    #TODO: refactor this using with.
+    def __get_next_file(self):
+        with self.lock:
+            if self.files:
+                return self.files.pop(0)
+            return None
+
+
     def run(self):
         while True:
-            self.lock.acquire()
-            if not self.files:
-                self.lock.release()
+            file_name = self.__get_next_file()
+            if not file_name:
                 break
-
-            file_name = self.files.pop(0)
-            self.lock.release()
 
             log(f"{self.name} está baixando {file_name}...")
             content = simulate_download(file_name)
