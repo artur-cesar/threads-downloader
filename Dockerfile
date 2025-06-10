@@ -7,6 +7,3 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY . /app
-
-# ⛔️ Remova esta linha:
-# CMD ["python", "cli.py"]
