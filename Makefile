@@ -1,5 +1,8 @@
 
 
+up:
+	docker compose up -d
+
 run:
 	python cli.py --threads 4
 
