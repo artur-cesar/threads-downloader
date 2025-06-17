@@ -4,10 +4,11 @@ import threading
 
 
 class Downloader:
-    def __init__(self, name: str, files: list[str]):
+    def __init__(self, name: str, files: list[str], download_func=None):
         self.name = name
         self.files = files
         self.lock = threading.Lock()
+        self.download_func = download_func or simulate_download
 
     def __get_next_file(self):
         with self.lock:
@@ -23,5 +24,8 @@ class Downloader:
                 break
 
             log(f"{self.name} está baixando {file_name}...")
-            content = simulate_download(file_name)
-            log(f"{self.name} finished {file_name}: {content[:40]}...")
+            try:
+                content = self.download_func(file_name)
+                log(f"{self.name} finished {file_name}: {content[:40]}...")
+            except Exception as e:
+                log(f"{self.name} erro ao baixar {file_name}: {e}")
